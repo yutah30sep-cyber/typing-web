@@ -9,9 +9,9 @@ const PHASES = { START:0, PLAY:1, REST:2, RESULT:3 };
 let phase = PHASES.START;
 
 const FLOW = ['A','P','B'];            // フェーズ記号
-const COUNT_A = 5;                     // A文数（必要なら変更）
-const COUNT_P = 5;                     // P文数（必要なら変更）
-const COUNT_B = 5;                     // B文数（必要なら変更）
+const COUNT_A = 30;                     // A文数（必要なら変更）
+const COUNT_P = 30;                     // P文数（必要なら変更）
+const COUNT_B = 30;                     // B文数（必要なら変更）
 const MAX_CHARS = 60;                   // 文の最大文字数
 const API_URL = '/api/generate';        // 生成API
 
