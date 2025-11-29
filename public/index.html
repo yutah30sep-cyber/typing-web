@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Typing Practice (EN, Space-aware)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
+    <style>
+      :root { --bg:#f6f6f6; --card:#fff; --text:#111; --muted:#666; }
+      *{box-sizing:border-box}
+      body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto}
+      .wrap{min-height:100svh;display:grid;place-items:center;padding:24px}
+      .panel{background:var(--card);width:min(880px,95vw);border-radius:16px;box-shadow:0 6px 22px rgba(0,0,0,.08);padding:24px}
+      .center{text-align:center}
+      .btn{padding:12px 16px;border:1px solid #ddd;background:#fff;border-radius:10px;cursor:pointer;font-weight:600}
+      .btn:disabled{opacity:.5;cursor:not-allowed}
+      .muted{color:var(--muted)}
+      .mono{font-family:Consolas,Menlo,ui-monospace,monospace}
+      #txtKana{font-size:24px;word-break:break-word}   /* 期待テキスト */
+      #txtRoma{font-size:24px;word-break:break-word;color:#2a7b56} /* 入力済み */
+      .small{font-size:12px;color:#888}
+      .spacer{height:8px}
+      .done { color:#2a7b56; }
+.next { text-decoration: underline; font-weight:700; }
+.rest { color:#999; }
+.caret {
+  display:inline-block;
+  border-left:2px solid #2a7b56;
+  margin-left:1px;
+  height:1em;
+  transform: translateY(2px);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity:0; } }
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="panel center">
+
+        <!-- ==== START ==== -->
+        <div id="viewTitle">
+          <h2>Typing Practice</h2>
+          <p class="muted">Press “Start” and follow on-screen instructions.</p>
+          <button id="btnStart" class="btn">Start</button>
+        </div>
+
+        <!-- ==== PLAY ==== -->
+        <div id="viewPlay" style="display:none">
+          <!-- これらのIDは sketch.js が参照します。中身は最小限のまま -->
+          <div class="small">
+            <span id="lblPhase">—</span> · <span id="lblProgress">—</span> ·
+            <span id="lblWpm">—</span> · <span id="lblAcc">—</span>
+          </div>
+          <div class="spacer"></div>
+          <div id="txtRoma" class="mono"></div>
+          <div id="txtKana" class="mono"></div>
+          <!-- キーボード描画を使わない場合でも ID だけ用意 -->
+          <div id="canvasHost" style="display:none"></div>
+        </div>
+
+        <!-- ==== REST ==== -->
+        <div id="viewRest" style="display:none">
+          <h3>Rest</h3>
+          <p class="muted">Preparing next block… <span id="restRemain"></span></p>
+          <!-- デバッグ表示等は sketch.js 側が innerHTML で書き込み -->
+        </div>
+
+        <!-- ==== RESULT ==== -->
+        <div id="viewResult" style="display:none">
+          <h3>Finished</h3>
+          <p class="muted" id="resultStats">Thanks!</p>
+          <div class="spacer"></div>
+          <button id="btnDownload" class="btn">Download CSV</button>
+        </div>
+
+      </div>
+    </div>
+
+<!-- JSZip と FileSaver を sketch.js より前に -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script src="./sketch.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "typing-web",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "openai": "^4.58.0"
+  }
+}
